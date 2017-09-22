@@ -132,29 +132,59 @@ void printtreepre(node *t) {
 
 int main ( void ){
 
-	int n, i=0;
+	int n, i=0, op=0;
 
 	node * root = NULL;
 	root->raiz->pai == NULL;
 
-	while(i<10){
-		printf("Numero %d: ", i);
-		scanf("%d", &n);
-		root = insert(root, n);
-		i++;
-	}
-	printf("\n-----\n");
-	printtree(root);
-	remove(root, 7);
-	printf("\n-----\nIn:\n");
-	printtree(root);
-	printf("\n-----\nPos:\n");
-	printtreepos(root);
-	printf("\n-----\nPre:\n");
-	printtreepre(root);
-	getchar();
-	// if(search(root, 7)) printf("achouUU!\n");
-	// else printf("nao achooou :(\n");
+	do {
+		printf("1. Add node\n");
+		printf("2. Remove\n");
+		printf("3. Search\n");
+		printf("4. In order\n");
+		printf("5. Pre-order\n");
+		printf("6. Post-order\n");
+		printf("7. Exit\n");
+		scanf("%d", &op);
+
+		switch (op) {
+			case 1:
+				printf("Add to node\nValue: ");
+				scanf("%d", &n);
+				root = insert(root, n);
+				printf("\n");
+			break;
+			case 2:
+				printf("Remove node\nValue: ");
+				scanf("%d", &n);
+				remove(root, n);
+				printf("\n");
+			break;
+			case 3:
+				printf("Search for node\nValue: ");
+				scanf("%d", &n);
+				(search(root, n)) ? (printf("Achou %d\n", n)) : (printf("Não Achou :(\n"));
+				printf("\n");
+			break;
+			case 4:
+				printf("In order\n");
+				printtree(root);
+				printf("\n");
+			break;
+			case 5:
+				printf("Pre-order\n");
+				printtreepre(root);
+				printf("\n");
+			break;
+			case 6:
+				printf("Post-order\n");
+				printtreepos(root);
+				printf("\n");
+			break;
+			case 7:
+			break;
+		}
+	} while(op != 7);
 
 	return 0;
 }
